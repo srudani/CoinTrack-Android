@@ -11,8 +11,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.cointrack.databinding.CoinListItemLayoutBinding
 
+interface CoinListAdapterDelegate {
+    fun onCoinSelected(coin: CoinListResponse.CoinListResponseItem)
+}
 
-class CoinListAdapter(var data: ArrayList<CoinListResponse.CoinListResponseItem>) : RecyclerView.Adapter<CoinListViewHolder>() {
+class CoinListAdapter(var data: ArrayList<CoinListResponse.CoinListResponseItem>, private val delegate: CoinListAdapterDelegate) : RecyclerView.Adapter<CoinListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinListViewHolder {
         val binder = DataBindingUtil.inflate<CoinListItemLayoutBinding>(
@@ -38,6 +41,11 @@ class CoinListAdapter(var data: ArrayList<CoinListResponse.CoinListResponseItem>
         }else{
             holder.binding.tvCoinPer.setTextColor(Color.RED)
         }
+
+        holder.itemView.setOnClickListener {
+            delegate.onCoinSelected(item)
+        }
+
     }
 }
 

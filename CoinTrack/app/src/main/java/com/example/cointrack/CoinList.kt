@@ -2,8 +2,10 @@ package com.example.cointrack
 
 import android.os.Parcel
 import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
 class CoinListResponse : ArrayList<CoinListResponse.CoinListResponseItem>() {
+    @Parcelize
     data class CoinListResponseItem(
         val ath: Double,
         val ath_change_percentage: Double,
@@ -27,15 +29,16 @@ class CoinListResponse : ArrayList<CoinListResponse.CoinListResponseItem>() {
         val name: String,
         val price_change_24h: Double,
         val price_change_percentage_24h: Double,
-        val roi: Roi,
+        val roi: Roi?,
         val symbol: String,
         val total_supply: Double,
         val total_volume: Double
-    ) {
+    ) : Parcelable {
+        @Parcelize
         data class Roi(
             val currency: String,
             val percentage: Double,
             val times: Double
-        )
+        ) : Parcelable
     }
 }

@@ -11,6 +11,23 @@
         android:label="coinListFragment"
         tools:layout="@layout/fragment_coin_list">
 
+        <action
+            android:id="@+id/action_coinListFragment_to_coinDetailsFragment"
+            app:destination="@id/coinDetailsFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/coinDetailsFragment"
+        android:name="com.example.cointrack.CoinDetailsFragment"
+        android:label="coinDetailsFragment"
+        tools:layout="@layout/fragment_coin_details">
+
+        <argument android:name="coin"
+            app:argType="com.example.cointrack.CoinListResponse$CoinListResponseItem">
+
+        </argument>
+
+    </fragment>
+
 
 </navigation>

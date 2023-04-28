@@ -7,21 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.example.cointrack.databinding.ActivityMainBinding
 import com.example.cointrack.databinding.FragmentCoinListBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
  * Use the [CoinListFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class CoinListFragment : Fragment() {
+class CoinListFragment : Fragment(), CoinListAdapterDelegate {
     private val viewModel by viewModel<CoinListViewModel>()
     private lateinit var binding: FragmentCoinListBinding
 
@@ -41,7 +38,7 @@ class CoinListFragment : Fragment() {
 
         viewModel.movieList.observe(viewLifecycleOwner) {
             Log.e("Got Data", it.size.toString())
-            binding.rvCoinList.adapter = CoinListAdapter(it)
+            binding.rvCoinList.adapter = CoinListAdapter(it, this)
         }
 
         viewModel.errorMessage.observe(viewLifecycleOwner) {
@@ -57,5 +54,10 @@ class CoinListFragment : Fragment() {
         }
 
         viewModel.getAllMovies()
+
+    }
+
+    override fun onCoinSelected(coin: CoinListResponse.CoinListResponseItem) {
+       findNavController().navigate(CoinListFragmentDirections.actionCoinListFragmentToCoinDetailsFragment(coin))
     }
 }
