@@ -12,28 +12,13 @@ class MainActivity : AppCompatActivity() {
     private val viewModel by viewModel<CoinListViewModel>()
     private lateinit var binding:ActivityMainBinding
 
+    private lateinit var adapter: CoinListAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel.movieList.observe(this) {
-            Log.e("Got Data", it.size.toString())
-            binding.rvCoinList.adapter = CoinListAdapter(it)
-        }
 
-        viewModel.errorMessage.observe(this) {
-            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-        }
-
-        viewModel.loading.observe(this) {
-            if (it) {
-                // show loading view
-            } else {
-               // Hide loading view
-            }
-        }
-
-        viewModel.getAllMovies()
     }
 }
