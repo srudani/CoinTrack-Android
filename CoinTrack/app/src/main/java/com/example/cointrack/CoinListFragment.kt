@@ -24,6 +24,11 @@ class CoinListFragment : Fragment(), CoinListAdapterDelegate {
 
     private lateinit var adapter: CoinListAdapter
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+            viewModel.getAllMovies()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,9 +57,6 @@ class CoinListFragment : Fragment(), CoinListAdapterDelegate {
                 // Hide loading view
             }
         }
-
-        viewModel.getAllMovies()
-
     }
 
     override fun onCoinSelected(coin: CoinListResponse.CoinListResponseItem) {

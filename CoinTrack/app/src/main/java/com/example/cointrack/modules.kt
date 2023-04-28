@@ -5,7 +5,7 @@ import org.koin.dsl.module
 
 val viewModelModule = module {
     viewModel {
-        CoinListViewModel(get())
+        CoinListViewModel(get(), get())
     }
 }
 
