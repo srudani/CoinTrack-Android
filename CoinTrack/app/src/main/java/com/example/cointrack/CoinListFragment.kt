@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.example.cointrack.databinding.ActivityMainBinding
 import com.example.cointrack.databinding.FragmentCoinListBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -26,7 +25,7 @@ class CoinListFragment : Fragment(), CoinListAdapterDelegate {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-            viewModel.getAllMovies()
+            viewModel.getAllCoins()
     }
 
     override fun onCreateView(

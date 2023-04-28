@@ -10,7 +10,7 @@ class CoinListViewModel constructor(private val mainRepository: CoinListReposito
     val movieList = MutableLiveData<CoinListResponse>()
     val loading = MutableLiveData<Boolean>()
 
-    fun getAllMovies() {
+    fun getAllCoins() {
         if (getSavedResponse() != null) {
             Log.e("Getting saved Data", "getAllMovies")
             movieList.value = handle[SAVED_DATA]
